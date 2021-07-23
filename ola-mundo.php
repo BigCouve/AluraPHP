@@ -3,5 +3,27 @@
 /* comentário
 por 
 linhas
-separados*/
+separados
+
+
+
+
+
+e
+
+
+
+
+
+
+
+
+
+
+
+
+
+comittado
+
+*/
 echo "Olá mundo!";
