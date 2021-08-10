@@ -2,14 +2,16 @@
 
 function sacar ($conta, $valorASacar)
 {
-    exibeMensagem("Valor da conta antes do saque: $conta");
-    if ($valorASacar < $conta["saldo"])
+    exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
+    if ($valorASacar > $conta["saldo"])
     {
         exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial.");
+        exibeMensagem("Saldo atual: $conta[saldo]");
     }
     else 
     {
-        $conta['saldo'] -= $valorASacar;
+        $conta["saldo"] -= $valorASacar;
+        exibeMensagem("Titular $conta[titular], saldo atual: $conta[saldo]");
     }
 }
 
@@ -34,7 +36,7 @@ $contasCorrentes =
         "saldo" => 3600,
     ], 
     123125123123123 => [
-        "titular" => "Maria", 
+        "titular" => "João", 
         "saldo" => 5000,
     ],  
 ];  
@@ -42,6 +44,6 @@ $contasCorrentes =
 
 foreach ($contasCorrentes as $value => $conta)
 {
-    sacar($conta["saldo"], 1000);
+    sacar($conta, 1000);
 }
 
