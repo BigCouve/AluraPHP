@@ -5,14 +5,14 @@ function sacar ($conta, $valorASacar)
     exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
     if ($valorASacar > $conta["saldo"])
     {
-        exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial.");
-        exibeMensagem("Saldo atual: $conta[saldo]");
+        exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial."); 
     }
     else 
     {
         $conta["saldo"] -= $valorASacar;
-        exibeMensagem("Titular $conta[titular], saldo atual: $conta[saldo]");
+        
     }
+    return exibeMensagem("Saldo atual: $conta[saldo]");
 }
 
 function depositar($conta, $valor)
