@@ -10,7 +10,6 @@ function sacar ($conta, $valorASacar)
     else 
     {
         $conta["saldo"] -= $valorASacar;
-        
     }
     return exibeMensagem("Saldo atual: $conta[saldo]");
 }
