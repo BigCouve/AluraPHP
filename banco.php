@@ -16,7 +16,9 @@ function sacar ($conta, $valorASacar)
 
 function depositar($conta, $valor)
 {
-    ;
+    $conta["saldo"] += $valor;
+    exibeMensagem("Valor a após depositado: $conta[saldo]");
+    
 }
 
 function exibeMensagem ($mensagem)
@@ -44,5 +46,7 @@ $contasCorrentes =
 foreach ($contasCorrentes as $value => $conta)
 {
     sacar($conta, 1000);
+    exibeMensagem(" ");
+    depositar($conta, 3000);
 }
 
