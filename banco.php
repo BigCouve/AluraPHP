@@ -1,8 +1,9 @@
 <?php
 
-function sacar ($conta, $valorASacar)
+function sacar (array $conta, float $valorASacar) : float
 {
-    exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
+    //exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
+    
     if ($valorASacar > $conta["saldo"])
     {
         exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial."); 
@@ -11,14 +12,22 @@ function sacar ($conta, $valorASacar)
     {
         $conta["saldo"] -= $valorASacar;
     }
-    return exibeMensagem("Saldo atual: $conta[saldo]");
+    //print_r($conta);
+    //echo PHP_EOL . "Mostrando o array: $conta" . PHP_EOL;
+    return $conta["saldo"];
 }
 
 function depositar($conta, $valor)
 {
-    $conta["saldo"] += $valor;
-    exibeMensagem("Valor a após depositado: $conta[saldo]");
-    
+    if(0 <= $valor)
+    {
+        $conta["saldo"] += $valor;
+        //exibeMensagem("Valor a após depositado: $conta[saldo]");
+    }
+    else {
+        exibeMensagem("Valor informado não pode ser depositado.");
+    }
+    return exibeMensagem("Saldo atual: $conta[saldo]");
 }
 
 function exibeMensagem ($mensagem)
@@ -30,7 +39,7 @@ $contasCorrentes =
 [
     123123213 => [
         "titular" => "Vinícius",
-        "saldo" => 1000,
+        "saldo" => 1200,
     ], 
     1231212412512 => [
         "titular" => "Alberto",
@@ -45,8 +54,11 @@ $contasCorrentes =
 
 foreach ($contasCorrentes as $value => $conta)
 {
-    sacar($conta, 1000);
-    exibeMensagem(" ");
+    exibeMensagem("Usuário de ID $value, titular $conta[titular]: ");
+    exibeMensagem("Sacando...");
+    exibeMensagem("Saldo Atual: " . sacar($conta, 1000));
+    exibeMensagem("Depositando...");
     depositar($conta, 3000);
+    
 }
 
