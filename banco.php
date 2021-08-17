@@ -1,9 +1,7 @@
 <?php
 
-function sacar (array $conta, float $valorASacar) : float
+function sacar (array &$conta, float $valorASacar) : float
 {
-    //exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
-    
     if ($valorASacar > $conta["saldo"])
     {
         exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial."); 
@@ -12,13 +10,12 @@ function sacar (array $conta, float $valorASacar) : float
     {
         $conta["saldo"] -= $valorASacar;
     }
-    //print_r($conta);
-    //echo PHP_EOL . "Mostrando o array: $conta" . PHP_EOL;
     return $conta["saldo"];
 }
 
-function depositar($conta, $valor)
+function depositar(array &$conta, float $valor) : float
 {
+
     if(0 <= $valor)
     {
         $conta["saldo"] += $valor;
@@ -27,7 +24,8 @@ function depositar($conta, $valor)
     else {
         exibeMensagem("Valor informado não pode ser depositado.");
     }
-    return exibeMensagem("Saldo atual: $conta[saldo]");
+
+    return $conta["saldo"];
 }
 
 function exibeMensagem ($mensagem)
@@ -54,11 +52,9 @@ $contasCorrentes =
 
 foreach ($contasCorrentes as $value => $conta)
 {
-    exibeMensagem("Usuário de ID $value, titular $conta[titular]: ");
     exibeMensagem("Sacando...");
-    exibeMensagem("Saldo Atual: " . sacar($conta, 1000));
+    exibeMensagem("Saldo após o saque: " . sacar($conta, 1000));
     exibeMensagem("Depositando...");
-    depositar($conta, 3000);
+    exibeMensagem("Saldo após depósito: " . depositar($conta, 3000));
     
 }
-
