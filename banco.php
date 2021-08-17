@@ -19,7 +19,6 @@ function depositar(array &$conta, float $valor) : float
     if(0 <= $valor)
     {
         $conta["saldo"] += $valor;
-        //exibeMensagem("Valor a após depositado: $conta[saldo]");
     }
     else {
         exibeMensagem("Valor informado não pode ser depositado.");
