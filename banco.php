@@ -1,6 +1,6 @@
 <?php
 
-function sacar (array &$conta, float $valorASacar) : float
+function sacar (array &$conta, float $valorASacar) : array
 {
     if ($valorASacar > $conta["saldo"])
     {
@@ -10,10 +10,10 @@ function sacar (array &$conta, float $valorASacar) : float
     {
         $conta["saldo"] -= $valorASacar;
     }
-    return $conta["saldo"];
+    return $conta;
 }
 
-function depositar(array &$conta, float $valor) : float
+function depositar(array &$conta, float $valor) : array
 {
 
     if(0 <= $valor)
@@ -24,7 +24,7 @@ function depositar(array &$conta, float $valor) : float
         exibeMensagem("Valor informado não pode ser depositado.");
     }
 
-    return $conta["saldo"];
+    return $conta;
 }
 
 function exibeMensagem ($mensagem)
@@ -49,11 +49,14 @@ $contasCorrentes =
 ];  
 
 
+
 foreach ($contasCorrentes as $value => $conta)
 {
     exibeMensagem("Sacando...");
-    exibeMensagem("Saldo após o saque: " . sacar($conta, 1000));
+    sacar($conta, 1000);
+    exibeMensagem("Saldo após o saque: " . $conta["saldo"]);
     exibeMensagem("Depositando...");
-    exibeMensagem("Saldo após depósito: " . depositar($conta, 3000));
+    depositar($conta, 3000);
+    exibeMensagem("Saldo após depósito: " . $conta["saldo"]);
     
 }
