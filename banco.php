@@ -1,6 +1,6 @@
 <?php
 
-include "funcoes.php";
+require_once "funcoes.php";
 
 $contasCorrentes = 
 [
@@ -19,14 +19,14 @@ $contasCorrentes =
 ];  
 
 
+
 foreach ($contasCorrentes as $value => $conta)
 {
-    exibeMensagem("Usuário de ID $value, titular $conta[titular]: ");
     exibeMensagem("Sacando...");
-    exibeMensagem("Saldo Atual: " . sacar($conta["saldo"], 1000));
+    sacar($conta, 1000);
+    exibeMensagem("Saldo após o saque: " . $conta["saldo"]);
     exibeMensagem("Depositando...");
-    exibeMensagem("Saldo atual: " . depositar($conta["saldo"], 3000));
-    exibeMensagem("Saldo final: $conta[saldo]");
+    depositar($conta, 3000);
+    exibeMensagem("Saldo após depósito: " . $conta["saldo"]);
     
 }
-

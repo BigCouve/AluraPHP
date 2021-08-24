@@ -1,7 +1,7 @@
 <?php
 
 
-function sacar (float $conta, float $valorASacar) : float
+function sacar (array &$conta, float $valorASacar) : array
 {
     //exibeMensagem("Valor da conta antes do saque: $conta[saldo]");
     
@@ -11,19 +11,18 @@ function sacar (float $conta, float $valorASacar) : float
     }
     else 
     {
-        $conta -= $valorASacar;
+        $conta["saldo"] -= $valorASacar;
     }
     //print_r($conta);
     //echo PHP_EOL . "Mostrando o array: $conta" . PHP_EOL;
     return $conta;
 }
 
-function depositar(float $conta, float $valor) : float
+function depositar(array &$conta, float $valor) : array
 {
-    if(0 <= $valor)
+    if(0 < $valor)
     {
         $conta["saldo"] += $valor;
-        //exibeMensagem("Valor a após depositado: $conta[saldo]");
     }
     else {
         exibeMensagem("Valor informado não pode ser depositado.");
