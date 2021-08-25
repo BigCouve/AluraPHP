@@ -34,3 +34,8 @@ function exibeMensagem ($mensagem)
 {
     echo $mensagem . PHP_EOL;
 }
+
+function titularComLetrasMaisculas(array $conta)
+{
+    $conta["titular"] = mb_strtoupper($conta["titular"]);
+}
