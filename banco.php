@@ -19,14 +19,17 @@ $contasCorrentes =
 ];  
 
 titularComLetrasMaisculas($contasCorrentes[123123213]);
+unset($contasCorrentes[1231212412512]);
 
 foreach ($contasCorrentes as $value => $conta)
 {
+    ["saldo" => &$saldo , "titular" => &$titular] = $conta;
+    exibeMensagem("Titular: $titular, processo iniciado.");
     exibeMensagem("Sacando...");
     sacar($conta, 1000);
-    exibeMensagem("Saldo após o saque: $conta[saldo], titular: $conta[titular]");
+    exibeMensagem("Saldo após o saque: $saldo");
     exibeMensagem("Depositando...");
     depositar($conta, 3000);
-    exibeMensagem("Saldo após depósito: " . $conta["saldo"]);
+    exibeMensagem("Saldo após depósito: " . $saldo);
     
 }

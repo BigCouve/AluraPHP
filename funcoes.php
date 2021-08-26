@@ -7,7 +7,7 @@ function sacar (array &$conta, float $valorASacar) : array
     
     if ($valorASacar > $conta)
     {
-        exibeMensagem("Titular $conta[titular]: Você não pode sacar esse valor pois não permitimos cheque especial."); 
+        exibeMensagem("Você não pode sacar esse valor pois não permitimos cheque especial."); 
     }
     else 
     {
@@ -35,7 +35,7 @@ function exibeMensagem ($mensagem)
     echo $mensagem . PHP_EOL;
 }
 
-function titularComLetrasMaisculas(array $conta)
+function titularComLetrasMaisculas(array &$conta)
 {
-    $conta["titular"] = mb_strtoupper($conta["titular"]);
+    $conta["titular"] = strtoupper($conta["titular"]);
 }
