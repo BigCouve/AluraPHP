@@ -4,18 +4,35 @@ class Conta
 {
     public $cpfTitular;
     public $nomeTitular;
-    public $saldo;
+    public $saldo = 0;
 
     public function sacar(float $valorASacar)
     {
         if ($this->saldo < $valorASacar)
         {
             echo "Você não pode sacar";
+            return;
         }
-        else
+        $this->saldo -= $valorASacar;
+    }
+    public function depositar(float $valorADepositar)
+    {
+        if ($valorADepositar <= 0)
         {
-            $this->saldo -= $valorASacar;
+            echo "Valor precisa ser maior";
+            return;
         }
+            $this->saldo += $valorADepositar;
+    }
+    public function transferir(float $valorATransferir, Conta $contaDestino)
+    {
+        if ($valorATransferir > $this->saldo)
+        {
+            echo "Valor a transferir maior do saldo atual.";
+            return;
+        }
+        $this->sacar($valorATransferir);
+        $contaDestino->depositar($valorATransferir);
     }
 }
 
