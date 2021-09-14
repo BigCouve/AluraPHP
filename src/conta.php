@@ -2,11 +2,11 @@
 
 class Conta
 {
-    public $cpfTitular;
-    public $nomeTitular;
+    private $cpfTitular;
+    private $nomeTitular;
     private $saldo = 0;
 
-    public function sacar(float $valorASacar)
+    public function saca(float $valorASacar)
     {
         if ($this->saldo < $valorASacar)
         {
@@ -15,7 +15,7 @@ class Conta
         }
         $this->saldo -= $valorASacar;
     }
-    public function depositar(float $valorADepositar)
+    public function deposita(float $valorADepositar)
     {
         if ($valorADepositar <= 0)
         {
@@ -24,24 +24,44 @@ class Conta
         }
             $this->saldo += $valorADepositar;
     }
-    public function transferir(float $valorATransferir, Conta $contaDestino)
+    public function transfere(float $valorATransferir, Conta $contaDestino)
     {
         if ($valorATransferir > $this->saldo)
         {
             echo "Valor a transferir maior do saldo atual.";
             return;
         }
-        $this->sacar($valorATransferir);
-        $contaDestino->depositar($valorATransferir);
+        $this->saca($valorATransferir);
+        $contaDestino->deposita($valorATransferir);
     }
-    public function mostrarSaldo()
+    public function mostraSaldo() : float
     {
-        echo "Valor em conta: $this->saldo" . PHP_EOL;
+        return $this->saldo;
     }
+    
+    public function mostraTitular() : string
+    {
+        return $this->nomeTitular;
+    }
+
+    public function mostraCpfDoTitular() : string  
+    {
+        return $this->cpfTitular; 
+    }
+
+    public function defineTitular(string $titular)
+    {
+        $this->nomeTitular = $titular;
+    }
+
+    public function defineCpf($cpf)
+    {
+        $this->cpfTitular = $cpf;
+    }
+
 }
 
-$primeiraConta = new Conta();
-$segundaConta = new Conta();
+
 
 // $primeiraConta->cpfTitular = "123.456.789-10";
 // $primeiraConta->nomeTitular = "João Silva";

@@ -3,8 +3,10 @@
 require_once "src/conta.php";
 
 //$primeiraConta = new Conta();
-$primeiraConta->depositar(1500);
-$primeiraConta->sacar(300); 
-$primeiraConta->sacar(400);
-$primeiraConta->mostrarSaldo();
+$primeiraConta = new Conta();
+$segundaConta = new Conta();
+$primeiraConta->deposita(1500);
+$primeiraConta->saca(300); 
+$primeiraConta->saca(400);
+echo $primeiraConta->mostraSaldo();
 //echo $primeiraConta->saldo;
