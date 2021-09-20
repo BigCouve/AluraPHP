@@ -5,13 +5,32 @@ class Conta
     private $cpfTitular;
     private $nomeTitular;
     private $saldo;
+    private static $numeroDeContas = 0;
     
     public function __construct(string $cpfTitular, string $nomeTitular) 
     {
         $this->cpfTitular = $cpfTitular;
         $this->nomeTitular = $nomeTitular;
+        $this->validaNomeTitular($nomeTitular);
         $this->saldo = 0;
+
+        self::$numeroDeContas++;
+        
+        
     
+    }
+
+    public static function mostraNumeroDeContas() : int
+    {
+        return self::$numeroDeContas;
+    }
+
+    private function validaNomeTitular(string $nomeTitular)
+    {
+        if (strlen($nomeTitular) < 5) {
+            echo "Nome precisa ter mais que 4 caracteres";
+            exit();
+        }
     }
 
     public function saca(float $valorASacar)

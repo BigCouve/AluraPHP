@@ -14,3 +14,6 @@ echo $primeiraConta->mostraSaldo() . PHP_EOL;
 
 $terceiraConta = new Conta("321.654.987.01", "Barney Cachorro");
 //var_dump($terceiraConta);
+
+echo Conta::mostraNumeroDeContas();
+
