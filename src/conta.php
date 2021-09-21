@@ -16,8 +16,14 @@ class Conta
 
         self::$numeroDeContas++;
         
-        
-    
+    }
+
+    public function __destruct()
+    {
+        if (self::$numeroDeContas > 2) 
+        {
+            self::$numeroDeContas--;
+        }
     }
 
     public static function mostraNumeroDeContas() : int
