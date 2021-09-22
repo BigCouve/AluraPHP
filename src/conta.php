@@ -1,17 +1,13 @@
 <?php
-
 class Conta
 {
-    private $cpfTitular;
-    private $nomeTitular;
+    private $titular;
     private $saldo;
     private static $numeroDeContas = 0;
     
-    public function __construct(string $cpfTitular, string $nomeTitular) 
+    public function __construct(Titular $titular) 
     {
-        $this->cpfTitular = $cpfTitular;
-        $this->nomeTitular = $nomeTitular;
-        $this->validaNomeTitular($nomeTitular);
+        $this->titular = $titular;
         $this->saldo = 0;
 
         self::$numeroDeContas++;
@@ -31,13 +27,7 @@ class Conta
         return self::$numeroDeContas;
     }
 
-    private function validaNomeTitular(string $nomeTitular)
-    {
-        if (strlen($nomeTitular) < 5) {
-            echo "Nome precisa ter mais que 4 caracteres";
-            exit();
-        }
-    }
+    
 
     public function saca(float $valorASacar)
     {
@@ -71,20 +61,10 @@ class Conta
     {
         return $this->saldo;
     }
-    
-    public function mostraTitular() : string
-    {
-        return $this->nomeTitular;
-    }
-
-    public function mostraCpfDoTitular() : string  
-    {
-        return $this->cpfTitular; 
-    }
 
     public function defineTitular(string $titular)
     {
-        $this->nomeTitular = $titular;
+        $this->titular = $titular;
     }
 
     public function defineCpf($cpf)
@@ -92,4 +72,13 @@ class Conta
         $this->cpfTitular = $cpf;
     }
 
+    public function mostraNomeTitular(): string
+    {
+        return $this->titular->mostraNome();
+    }
+
+    public function mostraCpfTitular(): string
+    {
+        return $this->titular->mostraCpf();
+    }
 }
