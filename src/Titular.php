@@ -3,8 +3,10 @@
 class Titular
 {
     private $nome;
+    private $cpf;
 
-    public function __construct(string $nome) {
+    public function __construct(Cpf $cpf, string $nome) {
+        $this->cpf = $cpf;
         $this->validaNomeTitular($nome);
         $this->nome = $nome;        
     }   
@@ -22,6 +24,9 @@ class Titular
         return $this->nome;
     }
     
-
+    public function mostraCpf() : string
+    {
+        return $this->cpf->mostraCpfa();
+    }
     
 }

@@ -7,10 +7,10 @@ class Cpf
 
     public function __construct(string $cpf) 
     {
-        return $this->cpf = $cpf;
+        $this->cpf = $cpf;
     }
 
-    public function mostraCpf()
+    public function mostraCpfa() : string
     {
         return $this->cpf;
     }

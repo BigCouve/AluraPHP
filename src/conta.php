@@ -2,14 +2,12 @@
 class Conta
 {
     private $titular;
-    private $cpf;
     private $saldo;
     private static $numeroDeContas = 0;
     
-    public function __construct(Cpf $cpf, Titular $titular) 
+    public function __construct(Titular $titular) 
     {
         $this->titular = $titular;
-        $this->$cpf = $cpf;
         $this->saldo = 0;
 
         self::$numeroDeContas++;
@@ -81,6 +79,8 @@ class Conta
 
     public function mostraCpfTitular(): string
     {
-        return $this->cpf->mostraCpf();
+        return $this->titular->mostraCpf();
     }
+
+    
 }
